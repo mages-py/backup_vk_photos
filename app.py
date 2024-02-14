@@ -23,8 +23,16 @@ def start(user_id):
     print('===================================================================')
     save_photos = []
     for photo in photos['response']['items']:
-        print(photo['id'], photo['sizes'][-1]['url'])
-        pprint(photo)
+        if 'likes' in photo:
+            # print(photo['likes']['count'], photo['id'], photo['sizes'][-1]['url'], photo['date'])
+            save_photos.append(
+                {
+                    'likes': photo['likes']['count'],
+                    'date': photo['date'],
+                    'url': photo['sizes'][-1]['url']
+                }
+            )
+    print(save_photos)
     # print('===================================================================')
     # photo_id = int(input('Введите ID фотографии: '))
     # if photo_id < 0:
