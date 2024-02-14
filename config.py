@@ -1,0 +1,2 @@
+# https://vk.com/dev/access_token
+VK_TOKEN = 'vk1.a.jtzC3-9qvuln9oGyVUP41_lVDaG1_9B2wQoM6kzJVFRMTk6B2Y3_apjTkGxnuOKa5PBF33TqmbQ_76g3Ky8tPNnJPBHGE5O4TEbuMP1gtKD0leu2Uxi9bu5wxgenXBmIogKl-48vcYudMWTOgIpWG07GGIzRbm--grSN-9SrQfdRcSvabzjfM3WqbtQCAx_n'
