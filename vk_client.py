@@ -51,6 +51,7 @@ class VKClient:
             }
         
         return self.get_data(url=url, params=params)
+    
 
 if __name__ == '__main__':        
     vk = VKClient(user_id=2688868)

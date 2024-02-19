@@ -1,4 +1,6 @@
 from vk_client import VKClient
+from ya_client import YaClient
+from file_utilities import FileUtilities
 from pprint import pprint
 
 def get_album_id(client_vk):
@@ -26,9 +28,16 @@ def get_sorted_photos(vk_client, album_id):
         return
     return sorted(photos['response']['items'], key=lambda photo: photo['likes']['count'], reverse=True)
     
+def get_qty_photos():
+    qty = input('Сколько фотографий скачать? (5 по умолчанию): ')
+    if qty.isdigit():
+        return int(qty)
+    return 5
 
-def start(user_id, qty_photos=5):
+
+def start(user_id, ya_token):
     client_vk = VKClient(user_id=user_id)
+    client_ya = YaClient(token=ya_token)
     
     album_id = get_album_id(client_vk)
     if not album_id:
@@ -36,14 +45,23 @@ def start(user_id, qty_photos=5):
         return
     
     photos = get_sorted_photos(client_vk, album_id)
-    pprint(photos[0:qty_photos])
-    # print('===================================================================')
-    # photo_id = int(input('Введите ID фотографии: '))
-    # if photo_id < 0:
-    #     return
-    # client.download_photo(photo_id, album_id)
+    qty_photos = get_qty_photos()
+    backup_photos = photos[0:qty_photos]
     
+    if not backup_photos:
+        print('Нет фотографий для сохранения.')
+        return
+    
+    for photo in backup_photos:
+        if 'sizes' in photo:
+            url = photo['sizes'][-1]['url']
+        else:
+            continue
+        file_name = photo['likes']['count']
+        client_ya.upload(file_name, url)    
 
 if __name__ == '__main__':
-    start(2688868)
+    vk_user_id = int(input('ID пользователя VK: '))
+    ya_token = input('Токен Яндекс.Диска: ')
+    start(vk_user_id, ya_token)
     # start(6616826)
