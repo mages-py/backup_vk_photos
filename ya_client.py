@@ -17,9 +17,17 @@ class YaClient:
         response = requests.put(url, headers=self.headers, params=params)
         return response.status_code
     
-    def upload_file(self, path, filename):
+    def _get_upload_url(self, path, overwrite='false'):
         url = f'{self.url}/resources/upload'
-        params = {'path': path, 'overwrite': 'true'}
-        files = {'file': open(filename, 'rb')}
-        response = requests.post(url, headers=self.headers, params=params, files=files)
-        return response    
+        params = {'path': path, 'overwrite': overwrite}
+        response = requests.get(url, headers=self.headers, params=params)
+        return response
+    
+    def upload_file(self, path, filename, overwrite='false'):
+        url = self._get_upload_url(path, overwrite).json().get('href', '')
+        if not url:
+            print('Ошибка получения ссылки для загрузки')
+            return
+        with open(filename, 'rb') as f:
+            response = requests.put(url, headers=self.headers, data=f)
+        return response

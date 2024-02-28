@@ -1,2 +1,2 @@
 # https://vk.com/dev/access_token
-VK_TOKEN = 'vk1.a.lwZijj1RzHi05pGhY4imxJFWEm6-4FGs4Pg9DqtmsHka0Xuvy5Hea0iGfQpMCsYTPzLTlooeLJJFiHzx1CQ7amwKZ1DigV2APwghAXg_zfkVY-_sFQmmelg_n_b1FGkJi7bqLotYhD1NZJHoqBTN14I77uFGbxPLgcuxAFhTcaeN--rWMt1Bt6QTPaR6wbgP'
+VK_TOKEN = 'vk1.a.izztDmvWxZVPCAS8QME3MRyFn-JHriMJDl4TkPpnV0zx1R2a9sAK5BXzS-k-I-wv0GM5uOZZNs_KjT52HhEX1R2txnofkq-kUnkcrh8e7I0rBd6Shfvsjf-zHDrGXSoejK58IjW8Kt4BN4Z9CjdpFjCFHRV2iF3B9-5lrBcvgGjI1etEqV5QC9uqgxBWyMs6'

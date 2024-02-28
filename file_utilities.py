@@ -4,7 +4,7 @@ import json
 
 class FileUtilities:
 
-    def read_file(filename):
+    def read_file(self,filename):
         with open(filename, 'r') as f:
             return f.read()
         
@@ -21,9 +21,11 @@ class FileUtilities:
     
     def create_json_file(self, path, data):
         with open(path, 'w') as f:
-            json.dump(data, f)
+            json.dump(data, f, indent=4, skipkeys=True)
     def delete_folder(self, path):
         os.rmdir(path)
+    def delete_file(self, path):
+        os.remove(path)
         
         
 if __name__ == '__main__':
