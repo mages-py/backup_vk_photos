@@ -76,8 +76,8 @@ def backup_photos(user_id, ya_token):
         return
     
     folder = get_folder_name(client_ya)
-    # print(folder)
     json_photos = []
+    
     print_progressbar(0, qty_photos, prefix = f'Прогресс: 0/{qty_photos}', suffix = 'Загружено', length = 50)
     for i, photo in enumerate(backup_photos):
         if not 'sizes' in photo:
