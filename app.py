@@ -60,6 +60,7 @@ def print_progressbar (iteration, total, prefix = '', suffix = '', decimals = 1,
 def backup_photos(user_id, ya_token):
     client_vk = VKClient(user_id=user_id)
     client_ya = YaClient(token=ya_token)
+    utils = FileUtilities()
     
     album_id = get_album_id(client_vk)
     if not album_id:
@@ -69,8 +70,7 @@ def backup_photos(user_id, ya_token):
     photos = get_sorted_photos(client_vk, album_id)
     qty_photos = get_qty_photos(len(photos))
     backup_photos = photos[0:qty_photos]
-    utils = FileUtilities()
-    
+     
     if not backup_photos:
         print('Нет фотографий для сохранения.')
         return
@@ -82,9 +82,10 @@ def backup_photos(user_id, ya_token):
     for i, photo in enumerate(backup_photos):
         if not 'sizes' in photo:
             continue
-        url = photo['sizes'][-1]['url']
+        max_size = sorted(photo['sizes'], key=lambda x: x['width'] * x['height'], reverse=True)[0]
+        url =max_size['url']
         ext = url.split('.')[-1][0:3]
-        size = photo['sizes'][-1]['type']
+        size = max_size['type']
         count_likes = photo['likes']['count']
         create_date = photo['date']
         file_name = f'{count_likes}.{ext}'
